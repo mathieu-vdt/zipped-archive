@@ -45,7 +45,7 @@ jobs:
         username: ${{ secrets.GMAIL_USERNAME }}
         password: ${{ secrets.GMAIL_APP_PASSWORD }}
         subject: "GitHub Actions Test Results"
-        to: teykz974@gmail.com 
+        to: cedric.surquin@gmail.com
         from: ${{ secrets.GMAIL_USERNAME }}
         body: |
           The tests for the project have completed. Please check the details of the test run.
