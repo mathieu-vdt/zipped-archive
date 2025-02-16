@@ -36,7 +36,7 @@ jobs:
         python zipped_archive.py  # Run your script to create the backup
 
     - name: Send email notification
-      if: always()  # This ensures the email is sent regardless of test pass or fail
+      if: always()
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
