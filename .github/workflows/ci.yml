@@ -42,13 +42,14 @@ jobs:
         server_address: smtp.gmail.com  # The Gmail SMTP server address
         server_port: 587  # The Gmail SMTP port for TLS
         secure: false  # Do not use SSL, use TLS for Gmail
-        username: oliviervidot974@gmail.com # GitHub Secret for your Gmail username
-        password: ijvl stsh bfya gzis  # GitHub Secret for your Gmail App password
+        username: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secret for your Gmail username
+        password: ${{ secrets.GMAIL_APP_PASSWORD }}  # GitHub Secret for your Gmail App password
         subject: "GitHub Actions Test Results"
         to: teykz974@gmail.com  # Recipient email
-        from: oliviervidot974@gmail.com  # Sender's email (should match the username)
+        from: ${{ secrets.GMAIL_USERNAME }}  # Sender's email (should match the username)
         body: |
           The tests for the project have completed. Please check the details of the test run.
           Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
+
 
 
