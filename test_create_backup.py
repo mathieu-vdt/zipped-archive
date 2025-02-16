@@ -17,9 +17,14 @@ def test_create_backup_windows(mocker):
 
     backup_path = create_backup()
 
-    # Normalize the paths to ensure consistent separators
-    expected_backup_path = os.path.normpath("C:\\Users\\user\\Backups\\backup_test.zip")
-    assert os.path.normpath(backup_path) == expected_backup_path
+    # Normalize the paths and replace backslashes with forward slashes
+    expected_backup_path = "C:/Users/user/Backups/backup_test.zip"
+    
+    # Replace backslashes with forward slashes to ensure consistent path separators
+    backup_path = backup_path.replace("\\", "/")
+    
+    assert backup_path == expected_backup_path
+
 
 
 def test_create_backup_linux(mocker):
