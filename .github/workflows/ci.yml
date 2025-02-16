@@ -29,7 +29,22 @@ jobs:
     - name: Run tests
       run: |
         pytest  # Run your tests using pytest
+      continue-on-error: true  # Don't stop the workflow even if tests fail
 
     - name: Run backup creation
       run: |
         python zipped_archive.py  # Run your script to create the backup
+
+    - name: Send email notification if tests fail
+      if: failure()  # Only run this step if tests fail
+      uses: m-bauer/send-mail@v1.0.1
+      with:
+        smtp-server: smtp.gmail.com
+        smtp-port: 587
+        from-email: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secrets for your Gmail username
+        to-email: teykz974@gmail.com  # Send the email to this address
+        subject: "GitHub Actions Test Results"
+        body: |
+          The tests for the project have failed. Please check the details of the test run.
+          Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
+        smtp-password: ${{ secrets.GMAIL_PASSWORD }}  # GitHub Secrets for your Gmail password or App Password
