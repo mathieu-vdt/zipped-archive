@@ -39,12 +39,15 @@ jobs:
       if: always()  # This ensures the email is sent regardless of test pass or fail
       uses: dawidd6/action-send-mail@v3
       with:
-        smtp-server: smtp.gmail.com
-        smtp-port: 587
-        from-email: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secrets for your Gmail username (make sure this is set up in the Secrets)
-        to-email: teykz974@gmail.com  # The recipient's email address
+        server_address: smtp.gmail.com  # The Gmail SMTP server address
+        server_port: 587  # The Gmail SMTP port
+        secure: true  # Use SSL for Gmail
+        username: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secret for your Gmail username
+        password: ${{ secrets.GMAIL_PASSWORD }}  # GitHub Secret for your Gmail App password
         subject: "GitHub Actions Test Results"
+        to: teykz974@gmail.com  # Recipient email
+        from: ${{ secrets.GMAIL_USERNAME }}  # Sender's email (should match the username)
         body: |
           The tests for the project have completed. Please check the details of the test run.
           Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
-        smtp-password: ${{ secrets.GMAIL_PASSWORD }}  # GitHub Secrets for your Gmail password or App Password (make sure this is set up in the Secrets)
+
