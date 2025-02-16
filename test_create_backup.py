@@ -16,8 +16,11 @@ def test_create_backup_windows(mocker):
     mocker.patch("zipped_archive.get_backup_filename", return_value="backup_test.zip")
 
     backup_path = create_backup()
+
+    # Normalize the paths to ensure consistent separators
     expected_backup_path = os.path.normpath("C:\\Users\\user\\Backups\\backup_test.zip")
     assert os.path.normpath(backup_path) == expected_backup_path
+
 
 def test_create_backup_linux(mocker):
     """Test the create_backup function on Linux."""
