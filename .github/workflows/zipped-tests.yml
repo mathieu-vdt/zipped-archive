@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.10]
+        python-version: [3.10]  # Utilisation correcte de la version Python 3.10
 
     steps:
     - name: Checkout code
