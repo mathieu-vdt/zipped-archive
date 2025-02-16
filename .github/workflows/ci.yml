@@ -26,6 +26,10 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install pytest pytest-mock  # Optional, if you want to run tests
 
+    - name: Run tests
+      run: |
+        pytest  # Run your tests using pytest
+
     - name: Run backup creation
       run: |
         python zipped_archive.py  # Run your script to create the backup
