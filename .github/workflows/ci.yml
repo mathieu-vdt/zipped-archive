@@ -41,10 +41,10 @@ jobs:
       with:
         smtp-server: smtp.gmail.com
         smtp-port: 587
-        from-email: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secrets for your Gmail username
-        to-email: teykz974@gmail.com  # Send the email to this address
+        from-email: ${{ secrets.GMAIL_USERNAME.GMAIL_USERNAME }}
+        to-email: teykz974@gmail.com
         subject: "GitHub Actions Test Results"
         body: |
           The tests for the project have failed. Please check the details of the test run.
           Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
-        smtp-password: ${{ secrets.GMAIL_PASSWORD }}  # GitHub Secrets for your Gmail password or App Password
+        smtp-password: ${{ secrets.GMAIL_USERNAME.GMAIL_PASSWORD }}
