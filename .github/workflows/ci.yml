@@ -37,7 +37,7 @@ jobs:
 
     - name: Send email notification if tests fail
       if: failure()  # Only run this step if tests fail
-      uses: m-bauer/send-mail@v1.0.1
+      uses: mathieu-vdt/zipped-archive
       with:
         smtp-server: smtp.gmail.com
         smtp-port: 587
