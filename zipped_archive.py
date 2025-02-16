@@ -24,8 +24,7 @@ def create_backup():
     def ignore_files(dir, files):
         return [f for f in files if f in exclusions]
 
-    # Correction ici : on crée un répertoire temporaire valide en utilisant le gestionnaire de contexte.
-    with tempfile.TemporaryDirectory() as temp_dir:  # Utilisation correcte du gestionnaire de contexte
+    with tempfile.TemporaryDirectory() as temp_dir:
         temp_backup_path = os.path.join(temp_dir, "backup")
         shutil.copytree(home_dir, temp_backup_path, ignore=ignore_files, dirs_exist_ok=True)
 
