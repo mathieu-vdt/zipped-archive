@@ -14,7 +14,7 @@ def get_backup_filename():
 
 def create_backup():
     """Crée une archive compressée du répertoire personnel de l'utilisateur en excluant certains fichiers."""
-    home_dir = os.path.expanduser(".")
+    home_dir = os.path.expanduser("~")
     backup_filename = get_backup_filename()
     backup_path = os.path.join(home_dir, "Backups", backup_filename)
     os.makedirs(os.path.dirname(backup_path), exist_ok=True)
