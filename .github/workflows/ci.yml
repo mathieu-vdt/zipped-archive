@@ -43,7 +43,7 @@ jobs:
         server_port: 587  # The Gmail SMTP port for TLS
         secure: false  # Do not use SSL, use TLS for Gmail
         username: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secret for your Gmail username
-        password: ijvlstshbfyagzis  # GitHub Secret for your Gmail App password
+        password: ijvl stsh bfya gzis  # GitHub Secret for your Gmail App password
         subject: "GitHub Actions Test Results"
         to: teykz974@gmail.com  # Recipient email
         from: oliviervidot974@gmail.com  # Sender's email (should match the username)
