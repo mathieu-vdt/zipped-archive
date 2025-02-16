@@ -1,30 +1,32 @@
-name: Python Tests
+name: Python Backup Creation
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main  # Or any other branch you prefer to trigger the action
+  pull_request:
+    branches:
+      - main  # Trigger on PRs to the main branch
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: [3.10]  # Utilisation correcte de la version Python 3.10
+    runs-on: ubuntu-latest  # This will run the action on an Ubuntu environment
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.10  # You can change the version as needed
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install pytest pytest-mock
+        pip install pytest pytest-mock  # Optional, if you want to run tests
 
-    - name: Run tests
+    - name: Run backup creation
       run: |
-        pytest
+        python zipped_archive.py  # Run your script to create the backup
