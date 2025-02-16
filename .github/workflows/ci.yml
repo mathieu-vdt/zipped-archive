@@ -40,8 +40,8 @@ jobs:
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com  # The Gmail SMTP server address
-        server_port: 587  # The Gmail SMTP port
-        secure: true  # Use SSL for Gmail
+        server_port: 587  # The Gmail SMTP port for TLS
+        secure: false  # Do not use SSL, use TLS for Gmail
         username: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secret for your Gmail username
         password: ${{ secrets.GMAIL_APP_PASSWORD }}  # GitHub Secret for your Gmail App password
         subject: "GitHub Actions Test Results"
@@ -50,11 +50,5 @@ jobs:
         body: |
           The tests for the project have completed. Please check the details of the test run.
           Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
-      env:
-        pythonLocation: /opt/hostedtoolcache/Python/3.13.2/x64
-        PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.2/x64/lib/pkgconfig
-        Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.2/x64
-        Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.2/x64
-        Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.2/x64
-        LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.2/x64/lib
+
 
