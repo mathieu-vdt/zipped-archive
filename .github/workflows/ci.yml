@@ -35,16 +35,16 @@ jobs:
       run: |
         python zipped_archive.py  # Run your script to create the backup
 
-    - name: Send email notification if tests fail
-      if: always() 
+    - name: Send email notification
+      if: always()  # This ensures the email is sent regardless of test pass or fail
       uses: dawidd6/action-send-mail@v3
       with:
         smtp-server: smtp.gmail.com
         smtp-port: 587
-        from-email: ${{ secrets.GMAIL_USERNAME.GMAIL_USERNAME }}
-        to-email: teykz974@gmail.com
+        from-email: ${{ secrets.GMAIL_USERNAME }}  # GitHub Secrets for your Gmail username (make sure this is set up in the Secrets)
+        to-email: teykz974@gmail.com  # The recipient's email address
         subject: "GitHub Actions Test Results"
         body: |
-          The tests for the project have failed. Please check the details of the test run.
+          The tests for the project have completed. Please check the details of the test run.
           Test results: ${{ steps.tests.outputs.result }}  # This will provide the result of the tests
-        smtp-password: ${{ secrets.GMAIL_USERNAME.GMAIL_PASSWORD }}
+        smtp-password: ${{ secrets.GMAIL_PASSWORD }}  # GitHub Secrets for your Gmail password or App Password (make sure this is set up in the Secrets)
